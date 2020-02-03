@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vultr Location Speedtest</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="app">
+    <h1>Find the best Vultr location for you</h1>
+    <button>Start</button>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            // Source https://www.vultr.com/resources/faq/#downloadspeedtests
+            locations: [
+                {
+                    name: 'Frankfurt, DE',
+                    ip: 'fra-de-ping.vultr.com',
+                    file: 'https://fra-de-ping.vultr.com/vultr.com.100MB.bin'
+                },
+                {
+                    name: 'Paris, France',
+                    ip: 'par-fr-ping.vultr.com',
+                    file: 'https://par-fr-ping.vultr.com/vultr.com.100MB.bin'
+                },
+                {
+                    name: 'Amsterdam, NL',
+                    ip: 'ams-nl-ping.vultr.com',
+                    file: 'https://ams-nl-ping.vultr.com/vultr.com.100MB.bin'
+                },
+                {
+                    name: 'London, UK',
+                    ip: 'lon-gb-ping.vultr.com',
+                    file: 'https://lon-gb-ping.vultr.com/vultr.com.100MB.bin'
+                },
+                {
+                    name: 'New York (NJ)',
+                    ip: 'nj-us-ping.vultr.com',
+                    file: 'https://nj-us-ping.vultr.com/vultr.com.100MB.bin'
+                },
+                {
+                    name: 'Toronto, Canada',
+                    ip: 'tor-ca-ping.vultr.com',
+                    file: 'https://tor-ca-ping.vultr.com/vultr.com.100MB.bin'
+                },
+            ]
+        }
+    })
+</script>
+</body>
+</html>
