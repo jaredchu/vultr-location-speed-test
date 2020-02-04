@@ -5,11 +5,28 @@
     <title>Vultr Location Speedtest</title>
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alfg/ping.js@0.2.2/dist/ping.min.js"></script>
 </head>
 <body>
 <div id="app">
-    <h1>Find the best Vultr location for you</h1>
-    <button>Start</button>
+    <h1>Vultr location speed test</h1>
+    <button v-on:click="runTest">Run test</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Ping</td>
+                <td>Speed</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="result in results">
+                <td>{{ result.name }}</td>
+                <td>{{ result.ping }}</td>
+                <td>{{ result.speed }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <script>
@@ -48,7 +65,37 @@
                     ip: 'tor-ca-ping.vultr.com',
                     file: 'https://tor-ca-ping.vultr.com/vultr.com.100MB.bin'
                 },
-            ]
+            ],
+            results: []
+        },
+        methods: {
+            runTest: function (event) {
+                var vm = this;
+                vm.results = []; // reset results
+
+                // Calculate ping & download speed
+                var pingJS = new Ping();
+                vm.locations.forEach(function (location) {
+                    pingJS.ping('https://' + location.ip, function (err, data) {
+                        if (err) {
+                            data = data + " " + err;
+                        }
+                        vm.results.push({
+                            name: location.name,
+                            ping: data,
+                            speed: null
+                        })
+                    });
+
+                    // This should calculate the download speed
+                });
+
+                // Reorder the results
+                function compare(r1, r2) {
+                    return r1.ping > r2.ping?1:-1;
+                }
+                vm.results.sort(compare);
+            }
         }
     })
 </script>
