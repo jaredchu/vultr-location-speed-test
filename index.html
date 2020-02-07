@@ -13,18 +13,18 @@
     <button v-on:click="runTest">Run test</button>
     <table border="1">
         <thead>
-            <tr>
-                <td>Name</td>
-                <td>Ping</td>
-                <td>Speed</td>
-            </tr>
+        <tr>
+            <td>Name</td>
+            <td>Ping</td>
+            <td>Speed</td>
+        </tr>
         </thead>
         <tbody>
-            <tr v-for="result in results">
-                <td>{{ result.name }}</td>
-                <td>{{ result.ping }}</td>
-                <td>{{ result.speed }}</td>
-            </tr>
+        <tr v-for="result in results">
+            <td>{{ result.name }}</td>
+            <td>{{ result.ping }}</td>
+            <td>{{ result.speed }}</td>
+        </tr>
         </tbody>
     </table>
 </div>
@@ -34,38 +34,88 @@
         el: '#app',
         data: {
             // Source https://www.vultr.com/resources/faq/#downloadspeedtests
-            locations: [
-                {
-                    name: 'Frankfurt, DE',
-                    ip: 'fra-de-ping.vultr.com',
-                    file: 'https://fra-de-ping.vultr.com/vultr.com.100MB.bin'
-                },
-                {
-                    name: 'Paris, France',
-                    ip: 'par-fr-ping.vultr.com',
-                    file: 'https://par-fr-ping.vultr.com/vultr.com.100MB.bin'
-                },
-                {
-                    name: 'Amsterdam, NL',
-                    ip: 'ams-nl-ping.vultr.com',
-                    file: 'https://ams-nl-ping.vultr.com/vultr.com.100MB.bin'
-                },
-                {
-                    name: 'London, UK',
-                    ip: 'lon-gb-ping.vultr.com',
-                    file: 'https://lon-gb-ping.vultr.com/vultr.com.100MB.bin'
-                },
-                {
-                    name: 'New York (NJ)',
-                    ip: 'nj-us-ping.vultr.com',
-                    file: 'https://nj-us-ping.vultr.com/vultr.com.100MB.bin'
-                },
-                {
-                    name: 'Toronto, Canada',
-                    ip: 'tor-ca-ping.vultr.com',
-                    file: 'https://tor-ca-ping.vultr.com/vultr.com.100MB.bin'
-                },
-            ],
+            // https://gist.github.com/jaredchu/9a8eb04140f6fce79a42f8a384355d72
+            locations: [{
+                "name": "Frankfurt, DE",
+                "ip": "fra-de-ping.vultr.com",
+                "link100": "https://fra-de-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://fra-de-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Paris, France",
+                "ip": "par-fr-ping.vultr.com",
+                "link100": "https://par-fr-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://par-fr-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Amsterdam, NL",
+                "ip": "ams-nl-ping.vultr.com",
+                "link100": "https://ams-nl-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://ams-nl-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "London, UK",
+                "ip": "lon-gb-ping.vultr.com",
+                "link100": "https://lon-gb-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://lon-gb-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "New York (NJ)",
+                "ip": "nj-us-ping.vultr.com",
+                "link100": "https://nj-us-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://nj-us-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Toronto, Canada",
+                "ip": "tor-ca-ping.vultr.com",
+                "link100": "https://tor-ca-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://tor-ca-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Singapore",
+                "ip": "sgp-ping.vultr.com",
+                "link100": "https://sgp-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://sgp-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Miami, Florida",
+                "ip": "fl-us-ping.vultr.com",
+                "link100": "https://fl-us-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://fl-us-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Chicago, Illinois",
+                "ip": "il-us-ping.vultr.com",
+                "link100": "https://il-us-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://il-us-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Atlanta, Georgia",
+                "ip": "ga-us-ping.vultr.com",
+                "link100": "https://ga-us-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://ga-us-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Dallas, Texas",
+                "ip": "tx-us-ping.vultr.com",
+                "link100": "https://tx-us-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://tx-us-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Tokyo, Japan",
+                "ip": "hnd-jp-ping.vultr.com",
+                "link100": "https://hnd-jp-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://hnd-jp-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Seattle, Washington",
+                "ip": "wa-us-ping.vultr.com",
+                "link100": "https://wa-us-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://wa-us-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Silicon Valley, California",
+                "ip": "sjo-ca-us-ping.vultr.com",
+                "link100": "https://sjo-ca-us-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://sjo-ca-us-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Los Angeles, California",
+                "ip": "lax-ca-us-ping.vultr.com",
+                "link100": "https://lax-ca-us-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://lax-ca-us-ping.vultr.com/vultr.com.1000MB.bin"
+            }, {
+                "name": "Sydney, Australia",
+                "ip": "syd-au-ping.vultr.com",
+                "link100": "https://syd-au-ping.vultr.com/vultr.com.100MB.bin",
+                "link1000": "https://syd-au-ping.vultr.com/vultr.com.1000MB.bin"
+            }],
             results: []
         },
         methods: {
@@ -73,9 +123,10 @@
                 var vm = this;
                 vm.results = []; // reset results
 
-                // Calculate ping & download speed
                 var pingJS = new Ping();
                 vm.locations.forEach(function (location) {
+
+                    // Calculate ping
                     pingJS.ping('https://' + location.ip, function (err, data) {
                         if (err) {
                             data = data + " " + err;
@@ -87,13 +138,15 @@
                         })
                     });
 
-                    // This should calculate the download speed
+                    // @TODO: This should calculate the download speed
                 });
 
                 // Reorder the results
+                // @TODO: This should order by averange of ping & download speed
                 function compare(r1, r2) {
-                    return r1.ping > r2.ping?1:-1;
+                    return r1.ping > r2.ping ? 1 : -1;
                 }
+
                 vm.results.sort(compare);
             }
         }
